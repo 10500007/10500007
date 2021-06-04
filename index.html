@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
+   
+    
+    
+    
+    <title>Document</title>
+    <style>
+        iframe{
+            background-color: rgb(91, 119, 119);
+        }
+         table {
+        margin: 0 auto;
+        text-align: center;
+        border-collapse: collapse;
+        border: 1px solid #a01818;
+        }
+        #t0{
+            background-color: aqua;
+            
+            
+        }
+ 
+       
+ 
+tr:nth-child(even) {
+  background: #791010;
+}
+ 
+th, td {
+  padding: 5px 20px;
+}
+ 
+ 
+th {
+  border-bottom: 1px solid #41745a;
+  
+}    
+    </style>
+</head>
+
+<body>
+    <button>Aqui</button><br>
+
+   
+    
+    
+    <script>
+
+ 
+ 
+     $.ajax({
+    url: 'AQUI48.csv',
+    dataType: 'text',
+  }).done(successFunction);
+
+  function successFunction(data) {
+  var allRows = data.split(/\r?\n|\r/);
+  var table = '<table>';
+  for (var singleRow = 0; singleRow < allRows.length; singleRow++) {
+    if (singleRow === 0) {
+      table += '<thead>';
+      table += '<tr>';
+    } else {
+      table += '<tr>';
+    }
+    var rowCells = allRows[singleRow].split(',');
+    for (var rowCell = 0; rowCell < rowCells.length; rowCell++) {
+      if (singleRow === 0) {
+        table += `<th id="t${rowCell}">`;
+        table += rowCells[rowCell];
+        table += '</th>';
+      } else {
+        table += `<td id="c${rowCell}">`;
+        table += rowCells[rowCell];
+        table += '</td>';
+      }
+    }
+    if (singleRow === 0) {
+      table += '</tr>';
+      table += '</thead>';
+      table += '<tbody>';
+    } else {
+      table += '</tr>';
+    }
+  } 
+  table += '</tbody>';
+  table += '</table>';
+  $('body').append(table);
+
+  document.getElementById('t0').innerHTML ='DATA E HORA'
+  document.getElementById('t1').innerHTML ='ESPAÇO LIVRE'
+  document.getElementById('t2').innerHTML ='USO DE MEMORIA'
+  document.getElementById('t3').innerHTML ='CONSUMO DE PROCESSADOR'
+
+  var c1 = document.getElementById('c1').innerHTML
+  var gg = parseInt(eval(c1))
+  var res1 = Number(gg.toFixed(2))
+  console.log(res1)
+  document.getElementById('c1').innerHTML = `${res1}%`
+
+
+
+
+
+
+
+
+
+  
+  
+}
+
+
+
+
+    </script>
+
+</body>
+</html>
